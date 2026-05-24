@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>future. — AI дизайн и обработка фото</title>
+  <meta name="description" content="Премиальный AI-дизайн, обработка фото, digital avatars, инфографика и визуальный контент. Быстрая связь через Telegram и VK." />
+  <meta name="keywords" content="AI обработка фото, digital avatars, AI фотосессии, визуальный контент, инфографика" />
+  <meta name="theme-color" content="#f4f4f7" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✨%3C/text%3E%3C/svg%3E">
+
+  <style>
+    :root{
+      --bg:#f8f5ff;
+      --card:#fffdfd;
+      --text:#111827;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --accent:#b38cff;
+      --accent2:#d9c2ff;
+      --shadow:0 18px 40px rgba(180,160,220,.18);
+      --radius:28px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family: Inter, system-ui, sans-serif;
+      background:linear-gradient(180deg,#fffdfd 0%, #f8f2ff 100%);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      max-width:100%;
+    }
+
+    .container{
+      width:min(1180px,92%);
+      margin:auto;
+    }
+
+    section{
+      padding:90px 0;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(179,140,255,.12);
+      color:#9d72ff;
+      font-weight:600;
+      margin-bottom:20px;
+      backdrop-filter: blur(10px);
+    }
+
+    h1{
+      font-size:clamp(2.7rem,6vw,5.8rem);
+      line-height:1.05;
+      letter-spacing:-2px;
+      margin-bottom:24px;
+    }
+
+    h2{
+      font-size:clamp(2rem,4vw,3.3rem);
+      line-height:1.1;
+      margin-bottom:20px;
+      letter-spacing:-1px;
+    }
+
+    p{
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:700px;
+      height:700px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(124,58,237,.15) 0%, transparent 70%);
+      top:-200px;
+      right:-100px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:50px;
+      align-items:center;
+    }
+
+    .hero p{
+      max-width:620px;
+      margin-bottom:30px;
+      font-size:1.15rem;
+    }
+
+    .btn-group{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:40px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:16px 26px;
+      border-radius:18px;
+      font-weight:700;
+      transition:.3s ease;
+      cursor:pointer;
+      border:none;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:white;
+      box-shadow:0 15px 35px rgba(124,58,237,.28);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 20px 40px rgba(124,58,237,.35);
+    }
+
+    .btn-secondary{
+      background:white;
+      border:1px solid var(--line);
+    }
+
+    .btn-secondary:hover{
+      transform:translateY(-3px);
+    }
+
+    .advantages{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .advantage{
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(255,255,255,.6);
+      border-radius:24px;
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:28px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(229,231,235,.7);
+      transition:.3s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+    }
+
+    .service-icon{
+      width:62px;
+      height:62px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.4rem;
+      margin-bottom:18px;
+      background:linear-gradient(135deg,#ede9fe,#ffffff);
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:24px;
+    }
+
+    .step-number{
+      font-size:3rem;
+      font-weight:800;
+      opacity:.12;
+      margin-bottom:8px;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .gallery-item{
+      height:320px;
+      border-radius:28px;
+      overflow:hidden;
+      position:relative;
+      background:linear-gradient(135deg,#ffffff,#ecebff);
+      box-shadow:var(--shadow);
+    }
+
+    .gallery-item::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.55), transparent);
+    }
+
+    .gallery-caption{
+      position:absolute;
+      left:24px;
+      bottom:24px;
+      color:white;
+      z-index:2;
+    }
+
+    .reviews{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+
+    .review{
+      background:white;
+      border-radius:24px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(229,231,235,.7);
+    }
+
+    .review strong{
+      display:block;
+      margin-top:16px;
+      font-size:1rem;
+    }
+
+    .contact-box{
+      background:white;
+      border-radius:34px;
+      padding:50px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:30px;
+      align-items:center;
+    }
+
+    .contact-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:24px;
+    }
+
+    footer{
+      padding:40px 0 60px;
+      border-top:1px solid rgba(229,231,235,.7);
+    }
+
+    .footer-links{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .footer-links a{
+      color:var(--muted);
+      transition:.3s ease;
+    }
+
+    .footer-links a:hover{
+      color:#9d72ff;
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
+      padding:20px;
+    }
+
+    .modal.active{
+      display:flex;
+    }
+
+    .modal-content{
+      background:white;
+      max-width:700px;
+      width:100%;
+      border-radius:28px;
+      padding:36px;
+      position:relative;
+      box-shadow:var(--shadow);
+      max-height:85vh;
+      overflow:auto;
+    }
+
+    .close-modal{
+      position:absolute;
+      top:16px;
+      right:18px;
+      width:42px;
+      height:42px;
+      border:none;
+      border-radius:50%;
+      background:#f3f4f6;
+      cursor:pointer;
+      font-size:1.2rem;
+    }
+
+    .cookie-banner{
+      position:fixed;
+      left:20px;
+      right:20px;
+      bottom:20px;
+      background:white;
+      border-radius:24px;
+      padding:20px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      box-shadow:var(--shadow);
+      z-index:998;
+      border:1px solid rgba(229,231,235,.7);
+    }
+
+    .review-btn{
+      margin-top:20px;
+    }
+
+    @media(max-width:1100px){
+      .hero-grid,
+      .grid,
+      .gallery,
+      .reviews,
+      .steps,
+      .contact-box{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .advantages{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:768px){
+      section{
+        padding:70px 0;
+      }
+
+      .hero{
+        padding-top:60px;
+      }
+
+      .hero-grid,
+      .grid,
+      .gallery,
+      .reviews,
+      .steps,
+      .contact-box{
+        grid-template-columns:1fr;
+      }
+
+      .cookie-banner{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .contact-box{
+        padding:34px;
+      }
+
+      h1{
+        letter-spacing:-1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <div class="badge">✨ AI DESIGN & VISUAL CONTENT</div>
+
+      <h1>future. - премиальный AI‑дизайн и обработка фото нового поколения</h1>
+
+      <p>
+        Создаём визуальный контент, который выглядит дорого, современно и вызывает доверие.
+        AI‑фотосессии, digital avatars, инфографика и визуальные решения для личного бренда и бизнеса.
+      </p>
+
+      <div class="btn-group">
+        <a class="btn btn-primary" href="https://t.me/future_content" target="_blank">
+          Написать в Телеграмме
+        </a>
+      </div>
+
+      <div class="advantages">
+        <div class="advantage">
+          <strong>Быстрый ответ</strong>
+          <p>Отвечаем оперативно и сразу обсуждаем задачу.</p>
+        </div>
+
+        <div class="advantage">
+          <strong>Премиальный стиль</strong>
+          <p>Чистый визуал и современный дизайн 2026 года.</p>
+        </div>
+
+        <div class="advantage">
+          <strong>Результат без перегруза</strong>
+          <p>Аккуратная эстетика и внимание к деталям.</p>
+        </div>
+      </div>
+    </div>
+
+    
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="badge">УСЛУГИ</div>
+    <h2>Что мы создаём</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="service-icon">📸</div>
+        <h3>AI фотосессии</h3>
+        <p>Стильные AI‑съёмки для соцсетей, брендов и личного позиционирования.</p>
+      </div>
+
+      <div class="card">
+        <div class="service-icon">🎞️</div>
+        <h3>Оживление фото</h3>
+        <p>Анимация изображений и создание живого визуального эффекта.</p>
+      </div>
+
+      <div class="card">
+        <div class="service-icon">🧠</div>
+        <h3>Digital avatars</h3>
+        <p>Уникальные AI‑аватары в премиальном и современном стиле.</p>
+      </div>
+
+      <div class="card">
+        <div class="service-icon">✨</div>
+        <h3>AI обработка</h3>
+        <p>Профессиональная стилизация и улучшение фотографий.</p>
+      </div>
+
+      <div class="card">
+        <div class="service-icon">🎨</div>
+        <h3>Визуальный контент</h3>
+        <p>Создание эстетичных визуалов для бизнеса и личного бренда.</p>
+      </div>
+
+      <div class="card">
+        <div class="service-icon">📊</div>
+        <h3>Инфографика и карточки</h3>
+        <p>Дизайн карточек для маркетплейсов и визуальной презентации товаров.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="badge">ПОЧЕМУ ВЫБИРАЮТ НАС</div>
+    <h2>Современный подход к визуалу</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Премиальный результат</h3>
+        <p>Каждая работа выглядит современно, чисто и коммерчески убедительно.</p>
+      </div>
+
+      <div class="card">
+        <h3>Быстрая коммуникация</h3>
+        <p>Без сложных форм и ожиданий — сразу переходим к задаче.</p>
+      </div>
+
+      <div class="card">
+        <h3>Оперативные сроки</h3>
+        <p>Делаем быстро, сохраняя качество и внимание к деталям.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="badge">КАК ВСЁ ПРОИСХОДИТ</div>
+    <h2>Простой и понятный процесс</h2>
+
+    <div class="steps">
+
+      <div class="card">
+        <div class="step-number">01</div>
+        <h3>Связь</h3>
+        <p>Вы пишете в Telegram и рассказываете о задаче.</p>
+      </div>
+
+      <div class="card">
+        <div class="step-number">02</div>
+        <h3>Обсуждение</h3>
+        <p>Согласовываем стиль, референсы и формат работы.</p>
+      </div>
+
+      <div class="card">
+        <div class="step-number">03</div>
+        <h3>Работа и правки</h3>
+        <p>Создаём визуал и при необходимости вносим изменения.</p>
+      </div>
+
+      <div class="card">
+        <div class="step-number">04</div>
+        <h3>Готовый результат</h3>
+        <p>Вы получаете финальный контент в высоком качестве.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+
+    <div class="badge">НАШИ ПРИМЕРЫ</div>
+    <h2>Смотрите наши работы в Telegram</h2>
+
+    <div class="card" style="text-align:center; padding:60px 30px;">
+      <p style="max-width:700px; margin:0 auto 28px;">
+        Все актуальные примеры работ, AI‑обработки, digital avatars и визуального контента
+        доступны в нашем Telegram‑канале.
+      </p>
+
+      <a class="btn btn-primary" href="https://t.me/future_content" target="_blank">
+        Смотреть наши примеры
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section>
+  <div class="container">
+
+    <div class="badge">ОТЗЫВЫ</div>
+    <h2>Отзывы наших клиентов</h2>
+
+    <div class="card" style="text-align:center; padding:60px 30px;">
+      <p style="max-width:760px; margin:0 auto 28px;">
+        Все наши отзывы вы можете смотреть у нас в Telegram‑канале.
+        Там собраны реальные впечатления клиентов и примеры выполненных работ.
+      </p>
+
+      <a class="btn btn-primary" href="https://t.me/future_content" target="_blank">
+        Смотреть отзывы в Telegram
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+
+    <div class="contact-box">
+
+      <div>
+        <div class="badge">КОНТАКТЫ</div>
+        <h2>Свяжитесь с нами</h2>
+
+        <p>
+          Обсудим ваш проект, подскажем лучший визуальный формат и быстро приступим к работе.
+        </p>
+
+        <div style="margin-top:24px;">
+          <p><strong>График:</strong> Работаем 24/7</p>
+        </div>
+
+        <div class="contact-links">
+          <a class="btn btn-primary" href="https://t.me/future_content" target="_blank">
+            Написать в Telegram
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3 style="margin-bottom:14px;">future.</h3>
+        <p>
+          AI‑дизайн, визуальный контент и обработка фото в эстетике нового поколения.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+
+    <p>© 2026 future. Все права защищены.</p>
+
+    <div class="footer-links">
+      <a href="#" data-modal="privacyModal">Политика конфиденциальности</a>
+      <a href="#" data-modal="dataModal">Согласие на обработку персональных данных</a>
+      <a href="#">Использование cookies</a>
+    </div>
+
+  </div>
+</footer>
+
+<div class="modal" id="privacyModal">
+  <div class="modal-content">
+    <button class="close-modal">&times;</button>
+
+    <h2>Политика конфиденциальности</h2>
+
+    <p>
+      Мы уважаем конфиденциальность пользователей и обрабатываем данные исключительно
+      в рамках коммуникации по услугам сайта. Используя сайт, вы соглашаетесь с
+      условиями обработки информации и использованием cookies.
+    </p>
+
+    <p style="margin-top:16px;">
+      Все данные используются только для связи и улучшения качества сервиса.
+    </p>
+
+  </div>
+</div>
+
+<div class="modal" id="dataModal">
+  <div class="modal-content">
+    <button class="close-modal">&times;</button>
+
+    <h2>Согласие на обработку персональных данных</h2>
+
+    <p>
+      Пользователь предоставляет согласие на обработку персональных данных
+      в целях коммуникации, обсуждения услуг и взаимодействия по проектам.
+    </p>
+
+    <p style="margin-top:16px;">
+      Данные не передаются третьим лицам и используются только в рамках работы сервиса.
+    </p>
+
+  </div>
+</div>
+
+<div class="cookie-banner" id="cookieBanner">
+  <div>
+    <strong>Мы используем cookies</strong>
+    <p>Продолжая использовать сайт, вы соглашаетесь с использованием файлов cookies.</p>
+  </div>
+
+  <button class="btn btn-primary" id="cookieAccept">
+    Принять
+  </button>
+</div>
+
+<script>
+  const modalButtons = document.querySelectorAll('[data-modal]');
+  const modals = document.querySelectorAll('.modal');
+  const closeButtons = document.querySelectorAll('.close-modal');
+
+  modalButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const modalId = button.getAttribute('data-modal');
+      document.getElementById(modalId).classList.add('active');
+    });
+  });
+
+  closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      button.closest('.modal').classList.remove('active');
+    });
+  });
+
+  modals.forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if(e.target === modal){
+        modal.classList.remove('active');
+      }
+    });
+  });
+
+  const cookieBanner = document.getElementById('cookieBanner');
+  const cookieAccept = document.getElementById('cookieAccept');
+
+  if(localStorage.getItem('cookieAccepted')){
+    cookieBanner.style.display = 'none';
+  }
+
+  cookieAccept.addEventListener('click', () => {
+    localStorage.setItem('cookieAccepted', 'true');
+    cookieBanner.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
